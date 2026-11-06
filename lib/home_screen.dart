@@ -10,7 +10,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,11 +21,11 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/login');
+              Navigator.pushNamed(context, '/account');
             },
             icon: Icon(Icons.account_circle_outlined),
             //tooltip showes "details" of what the button does when the user holds the button on mobile
-            tooltip: 'Login',
+            tooltip: 'Profile',
             ),
         ],
 

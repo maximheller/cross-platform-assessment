@@ -46,3 +46,19 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# Environment variables containing secrets
+.env
+.env.*
+!.env.example
+
+# Firebase service account private keys
+**/service-account*.json
+**/*-firebase-adminsdk-*.json
+
+# Private key files
+*.pem
+*.p12
+*.pfx
+*.keystore
+*.jks
