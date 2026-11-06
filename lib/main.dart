@@ -5,6 +5,7 @@ import 'package:assessment/profile.dart';
 import 'package:assessment/auth/auth_gate.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:assessment/register.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         // '/profile':(context) => ProfileScreen(title: 'Profile'),
 
 
-        // '/register': (context) =>  RegisterScreen(),
+        '/register': (context) =>  RegisterScreen(title: 'Register'),
         // '/settings': (context) => SettingsScreen(),
         // '/static_data': (context) => StaticDataScreen()
       },

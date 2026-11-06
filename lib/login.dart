@@ -21,6 +21,7 @@ class LoginScreenTab extends State<LoginScreen> {
   String? _errorMessage;
 
   Future<void> _login() async {
+    //! before the expression means NOT
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -32,6 +33,7 @@ class LoginScreenTab extends State<LoginScreen> {
 
     try {
       await AuthService.instance.signIn(
+        //.trim() removes whitespaces in the beginning and end of the String
         _emailController.text.trim(),
         _passwordController.text,
       );
@@ -63,7 +65,7 @@ class LoginScreenTab extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: Text(widget.title),
       ),
 
       body: Center(
@@ -117,6 +119,11 @@ class LoginScreenTab extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: _isLoading ? null : _login,
                   child: Text(_isLoading ? 'Logging in...' : 'Login'),
+                ),
+
+                ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(context, '/register'),
+                  child: Text('Register'),
                 ),
               ],
             ),
