@@ -16,9 +16,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        //TODO leading settings
         title: Text(widget.title),
         actions: [
+          IconButton(
+            onPressed: () => Navigator.pushNamed(context, '/settings'),
+            icon: Icon(Icons.settings),
+            tooltip: 'Settings',
+            ),
           IconButton(
             onPressed: () {
               Navigator.pushNamed(context, '/account');
