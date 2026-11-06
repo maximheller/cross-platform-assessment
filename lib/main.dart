@@ -7,6 +7,7 @@ import 'package:assessment/settings.dart';
 import 'firebase_options.dart';
 
 import 'package:assessment/register.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,12 +25,33 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  
   ThemeMode _themeMode = ThemeMode.system;
 
-  void _changeTheme(ThemeMode newTheme) {
+  final _prefs = SharedPreferencesAsync();
+
+  Future<void> _changeTheme(ThemeMode newTheme) async {
     setState(() {
       _themeMode = newTheme;
     });
+    //.name converts the enum to a String
+    await _prefs.setString('theme_mode', newTheme.name);
+  }
+
+  Future<void> _loadTheme() async {
+    final savedTheme = await _prefs.getString('theme_mode');
+    //ThemeMode.values.any((mode) => mode.name == savedTheme ensures that the ThemeMode actually exists
+    if(mounted && savedTheme!=null && ThemeMode.values.any((mode) => mode.name == savedTheme)) {
+      setState(() {
+          _themeMode = ThemeMode.values.byName(savedTheme);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTheme();
   }
 
   @override
